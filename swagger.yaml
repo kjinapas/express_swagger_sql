@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: ข้อสอบ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล โดยใช้ Express API และ SQL
+  version: 1.0.0
+  description: ข้อสอบพร้อมเฉลยเกี่ยวกับ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) ที่เคยออกจริง
+servers:
+  - url: http://localhost:3000
+    # description: Development server
+paths:
+  /exam:
+    get:
+      summary: แสดงข้อสอบ พร้อมเฉลย ทั้งหมด
+      responses:
+        '200':
+          description: A list of rows
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /exam/{id}:
+    get:
+      summary: แสดงข้อสอบ ข้อที่ (id)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: The row ID
+      responses:
+        '200':
+          description: A single row
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not found
