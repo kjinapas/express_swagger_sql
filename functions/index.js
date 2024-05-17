@@ -1,6 +1,7 @@
 const express  = require('express')
 const exam = require('./Route/Exam')
 const cors = require('cors');
+const serverless = require('serverless-http');
 const { swaggerUi, swaggerDocs } = require('./swagger');
 
 
@@ -19,3 +20,4 @@ app.listen(3000,()=>{
 })
 
 
+module.exports.handler = serverless(app);
